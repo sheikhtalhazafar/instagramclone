@@ -19,7 +19,7 @@ class _InstahomeState extends State<Instahome> {
     return Scaffold(
       appBar: CustomAppBar(
         title: 'EVE',
-        icon: Icons.notifications_none_outlined,
+        icon: Icons.notifications_none_rounded,
       ),
       drawer: Drawer(
         child: Align(

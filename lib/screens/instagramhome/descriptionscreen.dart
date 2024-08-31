@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:instagramclone/components/appbar.dart';
 import 'package:instagramclone/components/bottomnavbar.dart';
 import 'package:instagramclone/components/drawer.dart';
@@ -8,7 +9,8 @@ import 'package:instagramclone/riverpod/imageslider.dart';
 import 'package:instagramclone/screens/instagramhome/instabody.dart';
 import 'package:ionicons/ionicons.dart';
 
-class detailscreen extends ConsumerStatefulWidget {
+// ignore: must_be_immutable
+class Descriptionscreen extends ConsumerStatefulWidget {
   String heading;
   String profielimg;
   String bodyimage;
@@ -16,7 +18,7 @@ class detailscreen extends ConsumerStatefulWidget {
   String description;
   List<String> images;
   int currentindex;
-  detailscreen(
+  Descriptionscreen(
       {super.key,
       required this.heading,
       required this.profielimg,
@@ -27,14 +29,13 @@ class detailscreen extends ConsumerStatefulWidget {
       required this.currentindex});
 
   @override
-  ConsumerState<detailscreen> createState() => _detailscreenState();
+  ConsumerState<Descriptionscreen> createState() => _DescriptionscreenState();
 }
 
-class _detailscreenState extends ConsumerState<detailscreen> {
+class _DescriptionscreenState extends ConsumerState<Descriptionscreen> {
   @override
   void initState() {
     ref.read(sliderindex.notifier).state = widget.currentindex;
-    // TODO: implement initState
     super.initState();
   }
 
@@ -42,7 +43,7 @@ class _detailscreenState extends ConsumerState<detailscreen> {
   Widget build(BuildContext context) {
     final currentIndex = ref.watch(sliderindex);
     return Scaffold(
-      appBar: CustomAppBar(
+      appBar: const CustomAppBar(
         title: 'EVE',
         icon: Icons.notifications_none_outlined,
       ),
@@ -76,7 +77,8 @@ class _detailscreenState extends ConsumerState<detailscreen> {
                           ),
                           Text(
                             widget.heading,
-                            style: const TextStyle(fontWeight: FontWeight.bold),
+                            style: GoogleFonts.rubik(
+                                color: const Color(0xff1F132A)),
                           ),
                           const Spacer(),
                           const Icon(
@@ -92,7 +94,7 @@ class _detailscreenState extends ConsumerState<detailscreen> {
                         borderRadius: BorderRadius.circular(20),
                         child: Container(
                           width: MediaQuery.of(context).size.width,
-                          height: 280,
+                          height: 250,
                           decoration: BoxDecoration(
                             // image:  DecorationImage(image: AssetImage(instabody[index].bodyimage), fit: BoxFit.fill),
                             borderRadius: BorderRadius.circular(10),
@@ -117,9 +119,11 @@ class _detailscreenState extends ConsumerState<detailscreen> {
                           children: [
                             const Row(
                               children: [
-                                Icon(Icons.favorite_outline),
-                                Icon(Icons.comment_outlined),
-                                Icon(Icons.send),
+                                Icon(Icons.favorite_outline, size: 24),
+                                SizedBox(width: 5),
+                                Icon(Icons.comment_outlined, size: 24),
+                                SizedBox(width: 5),
+                                Icon(Icons.send, size: 24),
                               ],
                             ),
                             Row(
@@ -133,15 +137,15 @@ class _detailscreenState extends ConsumerState<detailscreen> {
                                 );
                               }),
                             ),
-                            const Row(
+                            Row(
                               children: [
                                 Text(
                                   '8.4 KM',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 11),
+                                  style: GoogleFonts.rubik(
+                                      fontSize: 11,
+                                      color: const Color(0xff000000)),
                                 ),
-                                Icon(Icons.location_on_outlined)
+                                const Icon(Icons.location_on_outlined)
                               ],
                             )
                           ],
@@ -151,15 +155,35 @@ class _detailscreenState extends ConsumerState<detailscreen> {
                           alignment: Alignment.topLeft,
                           child: Text(
                             widget.postname,
-                            style: const TextStyle(fontWeight: FontWeight.bold),
+                            style: GoogleFonts.rubik(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                                color: const Color(0xff1F132A)),
                           )),
+                      const SizedBox(height: 3),
                       Align(
                         alignment: Alignment.topLeft,
                         child: Text(
                           widget.description,
                           textAlign: TextAlign.justify,
+                          style: GoogleFonts.rubik(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
+                              color: const Color(0xff1F132A)),
                         ),
-                      )
+                      ),
+                      const SizedBox(height: 20),
+                      Align(
+                        alignment: Alignment.topLeft,
+                        child: Text(
+                          "Detailed section of the post goes here:",
+                          textAlign: TextAlign.justify,
+                          style: GoogleFonts.rubik(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
+                              color: const Color(0xff1F132A)),
+                        ),
+                      ),
                     ],
                   ),
                 );
@@ -171,56 +195,71 @@ class _detailscreenState extends ConsumerState<detailscreen> {
                 child: Divider(),
               ),
 
-              customRow(
+              const CustomRow(
                   icon: Icons.pin_drop_outlined,
                   text1: '123 Main Street',
                   text2: 'Postal Code, City, Country'),
-              customRow(
+              const CustomRow(
                   icon: Icons.calendar_today,
                   text1: 'friday July 10th - Sunday july 12',
                   text2: '5:00 pm - 12:00 pm'),
-              customRow(
+              const CustomRow(
                   icon: Ionicons.ticket_outline,
                   text1: 'General Entry - \$10.00',
-                  text2: 'kids-free'),
+                  text2: 'kids - free'),
 
               const Padding(
                 padding: EdgeInsets.only(left: 30, right: 30, top: 20),
                 child: Divider(),
               ),
 
+              Padding(
+                padding: const EdgeInsets.only(left: 30),
+                child: Text(
+                  'Events Tags',
+                  style: GoogleFonts.rubik(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 18,
+                      color: const Color(0xff49454F)),
+                ),
+              ),
+              const SizedBox(height: 10),
               const Padding(
-                padding: EdgeInsets.only(left: 30),
-                child: Text('Events Tags'),
-              ),
-
-              Row(
-                children: [
-                  Expanded(
-                      child: customcontainer(containertext: 'Fine Dining')),
-                  Expanded(
-                      child: customcontainer(containertext: 'Vegetarians')),
-                  Expanded(child: customcontainer(containertext: 'Cocktails')),
-                  Expanded(
-                      child: customcontainer(containertext: 'Vegetarians')),
-                ],
-              ),
-
-              Row(
-                children: [
-                  Expanded(
-                      child: customcontainer(containertext: 'RoofTop Patio')),
-                  Expanded(
-                      child: customcontainer(containertext: 'city Skyline')),
-                  Expanded(child: customcontainer(containertext: 'Seafood')),
-                  Expanded(child: customcontainer(containertext: 'Vegan')),
-                ],
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 3),
+                child: Row(
+                  children: [
+                    Expanded(
+                        child: Customcontainer(containertext: 'Fine Dining')),
+                    Expanded(
+                        child: Customcontainer(containertext: 'Vegetarian')),
+                    Expanded(
+                        child: Customcontainer(containertext: 'Cocktails')),
+                    Expanded(
+                        child: Customcontainer(containertext: 'Vegetarian')),
+                  ],
+                ),
               ),
 
               const Padding(
-                padding: EdgeInsets.only(left: 30, right: 30, top: 20),
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 3),
+                child: Row(
+                  children: [
+                    Expanded(
+                        child: Customcontainer(containertext: 'Rooftop Patio')),
+                    Expanded(
+                        child: Customcontainer(containertext: 'City Skyline')),
+                    Expanded(child: Customcontainer(containertext: 'Seafood')),
+                    Expanded(child: Customcontainer(containertext: 'Vegan')),
+                  ],
+                ),
+              ),
+
+              const Padding(
+                padding: EdgeInsets.only(left: 30, right: 30),
                 child: Divider(),
               ),
+
+              const SizedBox(height: 30),
             ],
           ),
         ),
@@ -231,9 +270,9 @@ class _detailscreenState extends ConsumerState<detailscreen> {
 }
 
 // ignore: camel_case_types
-class customcontainer extends StatelessWidget {
+class Customcontainer extends StatelessWidget {
   final String containertext;
-  customcontainer({required this.containertext});
+  const Customcontainer({super.key, required this.containertext});
 
   @override
   Widget build(BuildContext context) {
@@ -242,10 +281,16 @@ class customcontainer extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: Colors.black)),
+            border: Border.all(color: const Color(0xffD9D9D9))),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
-          child: Center(child: FittedBox(child: Text(containertext))),
+          child: Center(
+              child: FittedBox(
+                  child: Text(
+            containertext,
+            style:
+                GoogleFonts.inter(fontSize: 12, color: const Color(0xff1E1E1E)),
+          ))),
         ),
       ),
     );
@@ -253,26 +298,39 @@ class customcontainer extends StatelessWidget {
 }
 
 // ignore: camel_case_types
-class customRow extends StatelessWidget {
+class CustomRow extends StatelessWidget {
   final IconData icon;
   final String text1;
   final String text2;
-  customRow({required this.icon, required this.text1, required this.text2});
+  const CustomRow(
+      {super.key,
+      required this.icon,
+      required this.text1,
+      required this.text2});
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 10),
+      padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
       child: Row(
         children: [
-          Icon(icon),
+          Icon(icon, size: 26),
           const SizedBox(
             width: 20,
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(text1),
-              Text(text2),
+              Text(
+                text1,
+                style: GoogleFonts.rubik(
+                    fontSize: 14, color: const Color(0xff000000)),
+              ),
+              const SizedBox(height: 5),
+              Text(
+                text2,
+                style: GoogleFonts.rubik(
+                    fontSize: 12, color: const Color(0xff000000)),
+              ),
             ],
           )
         ],

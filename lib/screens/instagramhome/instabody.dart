@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:instagramclone/models/homebody.dart';
 import 'package:instagramclone/riverpod/imageslider.dart';
 import 'package:instagramclone/screens/instagramhome/descriptionscreen.dart';
@@ -63,7 +64,7 @@ Expanded bodysection() {
         description:
             'In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.'),
   ];
-  
+
   return Expanded(
     child: ListView.builder(
         itemCount: instabody.length,
@@ -71,8 +72,8 @@ Expanded bodysection() {
           return Consumer(builder: (context, ref, child) {
             final currentIndex = ref.watch(sliderindex);
             final PageController pageController = PageController(
-  initialPage: ref.read(sliderindex), // Start from the last viewed index
-);
+              initialPage: ref.read(sliderindex),
+            );
             return Container(
               margin: const EdgeInsets.only(left: 10, right: 10, top: 5),
               child: Column(
@@ -87,9 +88,29 @@ Expanded bodysection() {
                       const SizedBox(
                         width: 10,
                       ),
-                      Text(
-                        instabody[index].heading,
-                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Descriptionscreen(
+                                        heading: instabody[index].heading,
+                                        profielimg: instabody[index].profielimg,
+                                        bodyimage: instabody[index].bodyimage,
+                                        postname: instabody[index].postname,
+                                        description:
+                                            instabody[index].description,
+                                        images: instabody
+                                            .map((e) => e.bodyimage)
+                                            .toList(),
+                                        currentindex: ref.read(sliderindex),
+                                      )));
+                        },
+                        child: Text(
+                          instabody[index].heading,
+                          style:
+                              GoogleFonts.rubik(color: const Color(0xff1F132A)),
+                        ),
                       ),
                       const Spacer(),
                       const Icon(
@@ -103,7 +124,7 @@ Expanded bodysection() {
                   ),
                   Container(
                     width: MediaQuery.of(context).size.width,
-                    height: 280,
+                    height: 250,
                     decoration: BoxDecoration(
                       // image:  DecorationImage(image: AssetImage(instabody[index].bodyimage), fit: BoxFit.fill),
                       borderRadius: BorderRadius.circular(10),
@@ -115,12 +136,13 @@ Expanded bodysection() {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => detailscreen(
+                                  builder: (context) => Descriptionscreen(
                                         heading: instabody[index].heading,
                                         profielimg: instabody[index].profielimg,
                                         bodyimage: instabody[index].bodyimage,
                                         postname: instabody[index].postname,
-                                        description: instabody[index].description,
+                                        description:
+                                            instabody[index].description,
                                         images: instabody
                                             .map((e) => e.bodyimage)
                                             .toList(),
@@ -128,7 +150,7 @@ Expanded bodysection() {
                                       )));
                         },
                         child: PageView.builder(
-                          controller: pageController,
+                            controller: pageController,
                             onPageChanged: (index) {
                               ref.read(sliderindex.notifier).state = index;
                             },
@@ -141,15 +163,17 @@ Expanded bodysection() {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 8, bottom: 8),
+                    padding: const EdgeInsets.only(top: 10, bottom: 14),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Row(
                           children: [
-                            Icon(Icons.favorite_outline),
-                            Icon(Icons.comment_outlined),
-                            Icon(Icons.send),
+                            Icon(Icons.favorite_outline, size: 24),
+                            SizedBox(width: 5),
+                            Icon(Icons.comment_outlined, size: 24),
+                            SizedBox(width: 5),
+                            Icon(Icons.send, size: 24),
                           ],
                         ),
                         Row(
@@ -163,14 +187,14 @@ Expanded bodysection() {
                             );
                           }),
                         ),
-                        const Row(
+                        Row(
                           children: [
                             Text(
                               '8.4 KM',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 11),
+                              style: GoogleFonts.rubik(
+                                  fontSize: 11, color: const Color(0xff000000)),
                             ),
-                            Icon(Icons.location_on_outlined)
+                            const Icon(Icons.location_on_outlined)
                           ],
                         )
                       ],
@@ -180,15 +204,24 @@ Expanded bodysection() {
                       alignment: Alignment.topLeft,
                       child: Text(
                         instabody[index].postname,
-                        style: const TextStyle(fontWeight: FontWeight.bold),
+                        style: GoogleFonts.rubik(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                            color: const Color(0xff1F132A)),
                       )),
+                  const SizedBox(height: 3),
                   Align(
                     alignment: Alignment.topLeft,
                     child: Text(
                       instabody[index].description,
                       textAlign: TextAlign.justify,
+                      style: GoogleFonts.rubik(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                          color: const Color(0xff1F132A)),
                     ),
-                  )
+                  ),
+                  const SizedBox(height: 14),
                 ],
               ),
             );
@@ -201,7 +234,8 @@ class CustomAvatar extends StatelessWidget {
   final double radius;
   final Color backgroundColor;
 
-  CustomAvatar({
+  const CustomAvatar({
+    super.key,
     required this.radius,
     required this.backgroundColor,
   });

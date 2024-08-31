@@ -38,6 +38,7 @@ dependencies:
   flutter_riverpod: ^2.5.1
   ionicons: ^0.2.2
   google_maps_flutter: ^2.6.1
+  google_fonts: ^6.2.1
 
 dev_dependencies:
   flutter_test:

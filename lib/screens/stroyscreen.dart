@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:ionicons/ionicons.dart';
+import 'package:instagramclone/screens/instagramhome/Instahome.dart';
 
 class StoryScreen extends StatelessWidget {
   const StoryScreen({super.key});
@@ -19,39 +19,29 @@ class StoryScreen extends StatelessWidget {
                       image: AssetImage('images/storyimg.png'),
                       fit: BoxFit.cover)),
             ),
-
-
-          const  Positioned(
-                            top: 20,
-              left: 16, // Add padding from the left
-              right: 16, 
-              child: Divider()),
-
-
-             Positioned(
+            const Positioned(top: 20, left: 16, right: 16, child: Divider()),
+            Positioned(
               top: 30,
-              left: 16, // Add padding from the left
-              right: 16, // Add padding from the right
+              left: 16,
+              right: 16,
               child: Row(
-                crossAxisAlignment:
-                    CrossAxisAlignment.start, // Align items to the top
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const CircleAvatar(
                     radius: 30,
                     backgroundImage: AssetImage('images/Capture.PNG'),
                   ),
-                const   SizedBox(
-                      width:
-                          8), // Add some space between the avatar and the column
-                 const Column(
-                    crossAxisAlignment: CrossAxisAlignment
-                        .start, // Align text to the start (left)
-                    children:  [
+                  const SizedBox(width: 8),
+                  const Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
                       Row(
                         children: [
                           Text('Bean Bliss',
-                              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
-                          SizedBox(width: 4), // Space between text and icon
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white)),
+                          SizedBox(width: 4),
                           Icon(Icons.star_border_purple500_rounded,
                               color: Colors.white),
                         ],
@@ -60,22 +50,30 @@ class StoryScreen extends StatelessWidget {
                           style: TextStyle(fontSize: 12, color: Colors.white)),
                     ],
                   ),
-                  const Spacer(), // Pushes the rest of the content to the end
-                  const Text('...', style: TextStyle(fontSize: 28, color: Colors.white)),
-                  const SizedBox(width: 8), // Add space between text and icon
-                   GestureDetector(
-                    onTap: (){
-                      Navigator.pop(context);
-                    },
-                    child: Icon(Icons.cancel_outlined, color: Colors.white, size: 30,)),
+                  const Spacer(),
+                  const Text('...',
+                      style: TextStyle(fontSize: 28, color: Colors.white)),
+                  const SizedBox(width: 8),
+                  GestureDetector(
+                      onTap: () {
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Instahome()));
+                      },
+                      child: const Icon(
+                        Icons.cancel_outlined,
+                        color: Colors.white,
+                        size: 30,
+                      )),
                 ],
               ),
             )
           ]),
         ),
         Container(
-          height: 70, // Adjust height as needed
-          width: MediaQuery.of(context).size.width, // Full width of the screen
+          height: 70,
+          width: MediaQuery.of(context).size.width,
           decoration: const BoxDecoration(
             color: Colors.black,
           ),
@@ -87,14 +85,13 @@ class StoryScreen extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
-                    height: 45, // Adjust height as needed
+                    height: 45,
                     decoration: BoxDecoration(
-                      borderRadius:
-                          BorderRadius.circular(20), // Rounded corners
-                      color: Colors.transparent, // Fully transparent background
+                      borderRadius: BorderRadius.circular(20),
+                      color: Colors.transparent,
                       border: Border.all(
-                        color: Colors.white, // White border
-                        width: 1.0, // Border thickness
+                        color: Colors.white,
+                        width: 1.0,
                       ),
                     ),
                     child: const Padding(
