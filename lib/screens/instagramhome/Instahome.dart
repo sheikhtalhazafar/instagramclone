@@ -17,7 +17,8 @@ class _InstahomeState extends State<Instahome> {
   Widget build(BuildContext context) {
     print("Rebuilding...");
     return Scaffold(
-      appBar: CustomAppBar(
+      backgroundColor: Colors.white,
+      appBar: const CustomAppBar(
         title: 'EVE',
         icon: Icons.notifications_none_rounded,
       ),

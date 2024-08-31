@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:instagramclone/models/homebody.dart';
 import 'package:instagramclone/riverpod/imageslider.dart';
 import 'package:instagramclone/screens/instagramhome/descriptionscreen.dart';
+import 'package:instagramclone/screens/profile.dart';
 
 Expanded bodysection() {
   List<body> instabody = [
@@ -93,18 +94,7 @@ Expanded bodysection() {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => Descriptionscreen(
-                                        heading: instabody[index].heading,
-                                        profielimg: instabody[index].profielimg,
-                                        bodyimage: instabody[index].bodyimage,
-                                        postname: instabody[index].postname,
-                                        description:
-                                            instabody[index].description,
-                                        images: instabody
-                                            .map((e) => e.bodyimage)
-                                            .toList(),
-                                        currentindex: ref.read(sliderindex),
-                                      )));
+                                  builder: (context) => Profile()));
                         },
                         child: Text(
                           instabody[index].heading,

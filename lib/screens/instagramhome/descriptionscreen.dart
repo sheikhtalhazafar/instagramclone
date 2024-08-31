@@ -43,6 +43,7 @@ class _DescriptionscreenState extends ConsumerState<Descriptionscreen> {
   Widget build(BuildContext context) {
     final currentIndex = ref.watch(sliderindex);
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: const CustomAppBar(
         title: 'EVE',
         icon: Icons.notifications_none_outlined,
